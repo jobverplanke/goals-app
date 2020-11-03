@@ -49,4 +49,4 @@ return PhpCsFixer\Config::create()
     ->setRules($rules)
     ->setRiskyAllowed(true)
     ->setFinder($finder)
-    ->setCacheFile(__DIR__.'.php_cs.cache');
+    ->setCacheFile(__DIR__.'/.php_cs.cache');
