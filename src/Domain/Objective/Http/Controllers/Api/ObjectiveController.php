@@ -6,8 +6,10 @@ namespace Domain\Objective\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Domain\Objective\Actions\CreateObjectiveAction;
-use Domain\Objective\Http\Resources\ObjectiveResource;
+use Domain\Objective\Http\Resources\Objective\ObjectiveResource;
+use Domain\Objective\Services\Objective\ObjectiveService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * Class ObjectiveController
@@ -15,33 +17,42 @@ use Illuminate\Http\Request;
  */
 class ObjectiveController extends Controller
 {
-    /**
-     *
-     */
-    public function index()
-    {
+    private ObjectiveService $objectiveService;
 
+    public function __construct(ObjectiveService $objectiveService)
+    {
+        $this->objectiveService = $objectiveService;
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @param \Domain\Objective\Actions\CreateObjectiveAction $createObjectiveAction
-     *
-     * @return \Domain\Objective\Http\Resources\ObjectiveResource
-     */
-    public function store(Request $request, CreateObjectiveAction $createObjectiveAction)
+    public function index(Request $request): AnonymousResourceCollection
+    {
+        $objectives = $this->objectiveService
+            ->getRepository()
+            ->paginate(
+                (int) $request->get('perPage')
+            );
+
+        return ObjectiveResource::collection(
+            $objectives
+        );
+    }
+
+    public function store(Request $request, CreateObjectiveAction $createObjectiveAction): ObjectiveResource
     {
         return new ObjectiveResource(
             $createObjectiveAction->execute($request)
         );
     }
 
-    /**
-     * @param $id
-     */
-    public function show($id)
+    public function show(int $id): ObjectiveResource
     {
-        //
+        $objective = $this->objectiveService
+            ->getRepository()
+            ->findOrFail($id);
+
+        return new ObjectiveResource(
+            $objective
+        );
     }
 
     /**

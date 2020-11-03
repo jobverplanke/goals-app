@@ -7,6 +7,7 @@ namespace Domain\Objective\Repositories;
 use Domain\Objective\Builders\ObjectiveBuilder;
 use Domain\Objective\DataTransferObjects\StoreObjectiveDTO;
 use Domain\Objective\Models\Objective;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -54,5 +55,15 @@ class ObjectiveRepository
             'ambition' => $objectiveDTO->getAmbition(),
             'term' => $objectiveDTO->getTerm(),
         ]);
+    }
+
+    public function findOrFail(int $id)
+    {
+        return $this->model::findOrFail($id);
+    }
+
+    public function paginate(int $perPage): LengthAwarePaginator
+    {
+        return $this->model->paginate($perPage);
     }
 }

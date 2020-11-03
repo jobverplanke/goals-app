@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', fn(): \Inerti
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('objectives', [\Domain\Objective\Http\Controllers\Api\ObjectiveController::class, 'index']);
     Route::post('objectives', [\Domain\Objective\Http\Controllers\Api\ObjectiveController::class, 'store']);
 
     Route::get('users', [\Domain\Membership\Http\Controllers\Api\UserController::class, 'index']);
