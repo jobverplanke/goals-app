@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 
 /**
  * Class CreateObjectiveAction
+ *
  * @author Job Verplanke <job.verplanke@gmail.com>
  */
 class CreateObjectiveAction

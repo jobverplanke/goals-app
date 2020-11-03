@@ -59,8 +59,7 @@ class StoreObjectiveDTO
         ?string $vision = null,
         ?string $ambition = null,
         ?string $term = null
-    )
-    {
+    ) {
         return new self($userId, $uuid, $name, $description, $vision, $ambition, $term);
     }
 
@@ -75,7 +74,7 @@ class StoreObjectiveDTO
     /**
      * @return \Ramsey\Uuid\UuidInterface
      */
-    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    public function getUuid(): UuidInterface
     {
         return $this->uuid;
     }
@@ -119,6 +118,4 @@ class StoreObjectiveDTO
     {
         return $this->term;
     }
-
-
 }

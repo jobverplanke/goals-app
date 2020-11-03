@@ -10,7 +10,6 @@ use Domain\Membership\Http\Resources\User\UserResource;
 use Domain\Membership\Http\Resources\User\UserResourceCollection;
 use Domain\Membership\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 
 /**
  * Class UserController
@@ -81,7 +80,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
     }
 
     /**

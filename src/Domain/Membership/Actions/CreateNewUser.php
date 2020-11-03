@@ -32,7 +32,7 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         return DB::transaction(
-            fn(): User => tap(User::create([
+            fn (): User => tap(User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
@@ -56,7 +56,8 @@ class CreateNewUser implements CreatesNewUsers
                 ]);
 
                 $this->createTeam($user);
-            }));
+            })
+        );
     }
 
     /**
