@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domain\Membership\Http\Requests\User;
 
-use App\Actions\Fortify\PasswordValidationRules;
+use Domain\Membership\Actions\PasswordValidationRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserRequest extends FormRequest

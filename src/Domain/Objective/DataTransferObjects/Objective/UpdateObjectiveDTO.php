@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Domain\Objective\DataTransferObjects;
+namespace Domain\Objective\DataTransferObjects\Objective;
 
 use Ramsey\Uuid\UuidInterface;
 
-class StoreObjectiveDTO
+class UpdateObjectiveDTO
 {
     private int $userId;
 

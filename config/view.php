@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -15,6 +17,7 @@ return [
 
     'paths' => [
         resource_path('views'),
+        base_path('src/Domain/Objective/resources/views')
     ],
 
     /*

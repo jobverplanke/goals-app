@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +25,5 @@ Route::middleware(['api'])->group(function () {
     Route::post('users', [\Domain\Membership\Http\Controllers\Api\UserController::class, 'store']);
 
     Route::post('objectives', [\Domain\Objective\Http\Controllers\Api\ObjectiveController::class, 'store']);
+    Route::patch('objectives/{id}', [\Domain\Objective\Http\Controllers\Api\ObjectiveController::class, 'update']);
 });
