@@ -1,0 +1,67 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: jobverplanke/nginx:1.18-alpine
+    container_name: nginx
+    environment:
+      APP_DOMAIN: goals.test
+      MAIL_DOMAIN: mail.goals.test
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html:cached
+    networks:
+      proxy:
+
+  php:
+    image: ghcr.io/jobverplanke/php:7.4-fpm-dev
+    container_name: php
+    environment:
+      PHP_IDE_CONFIG: 'serverName=Docker'
+    volumes:
+      - ./:/var/www/html:cached
+    networks:
+      proxy:
+
+  mysql:
+    image: library/mysql:8.0
+    container_name: mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --skip-name-resolve
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      TZ: Europe/Amsterdam
+    ports:
+      - 3307:3306
+    volumes:
+      - ./.docker/mysql/data:/var/lib/mysql
+    networks:
+      proxy:
+
+  redis:
+    image: library/redis:6.0-alpine
+    container_name: redis
+    command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
+    ports:
+      - 6379:6379
+    volumes:
+      - ./.docker/redis/data:/data
+    networks:
+      proxy:
+
+  mail:
+    image: mailhog/mailhog
+    container_name: mail
+    networks:
+      proxy:
+
+  whoami:
+    image: traefik/whoami
+    container_name: whoami
+    networks:
+      proxy:
+
+networks:
+  proxy:
+    driver: bridge
