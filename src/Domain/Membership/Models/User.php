@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Objective::class);
     }
+
+    public function isVerified(): bool
+    {
+        return $this->getAttribute('email_verified_at') !== null;
+    }
 }

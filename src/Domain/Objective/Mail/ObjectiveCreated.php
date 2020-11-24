@@ -17,22 +17,12 @@ class ObjectiveCreated extends Mailable implements ShouldQueue
 
     private Objective $objective;
 
-    /**
-     * Create a new message instance.
-     *
-     * @param \Domain\Objective\Models\Objective $objective
-     */
     public function __construct(Objective $objective)
     {
         $this->objective = $objective;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
+    public function build(): ObjectiveCreated
     {
         return $this->view('mail.new-objective')
             ->subject($this->getSubject())

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -169,15 +171,18 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\HorizonServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\FortifyServiceProvider::class,
-        App\Providers\JetstreamServiceProvider::class,
+        Domain\App\Providers\AppServiceProvider::class,
+        Domain\App\Providers\AuthServiceProvider::class,
+        // Domain\App\Providers\BroadcastServiceProvider::class,
+        Domain\App\Providers\EventServiceProvider::class,
+        Domain\App\Providers\HorizonServiceProvider::class,
+        Domain\App\Providers\RouteServiceProvider::class,
+        Domain\App\Providers\FortifyServiceProvider::class,
+        Domain\App\Providers\JetstreamServiceProvider::class,
 
+
+        Domain\Objective\Providers\ObjectiveServiceProvider::class,
+        Domain\Membership\Providers\MembershipServiceProvider::class,
     ],
 
     /*

@@ -6,21 +6,48 @@ namespace Domain\Objective\Http\Resources\Objective;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Class ObjectiveResource
+ * @author Job Verplanke <job.verplanke@gmail.com>
+ */
 class ObjectiveResource extends JsonResource
 {
-    public function toArray($request)
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return array
+     */
+    public function toArray($request): array
     {
+        /** @var \Domain\Objective\Models\Objective $objective */
+        $objective = $this->resource;
+
         return [
-            'id' => $this->id,
-            'uuid' => $this->uuid,
-            'name' => $this->name,
-            'description' => $this->description,
-            'vision' => $this->vision,
-            'ambition' => $this->ambition,
-            'term' => $this->term,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-            'updated_at' => $this->updated_at,
-            'deleted_at' => $this->when(null === $this->deleted_at, ''),
+            'id' => $objective->getAttribute('id'),
+            'uuid' => $objective->getAttribute('uuid'),
+            'name' => $objective->getAttribute('name'),
+            'description' => $objective->getAttribute('description'),
+            'vision' => $objective->getAttribute('vision'),
+            'ambition' => $objective->getAttribute('ambition'),
+            'term' => $objective->getAttribute('term'),
+            'created_at' => $this->when(
+                $objective->getAttribute('created_at') === null,
+                '',
+                $objective->getAttribute('created_at')->format('Y-m-d H:i:s')
+            ),
+
+            'updated_at' => $this->when(
+                $objective->getAttribute('updated_at') === null,
+                '',
+                $objective->getAttribute('updated_at')->format('Y-m-d H:i:s')
+            ),
+
+            'deleted_at' => $this->when(
+                $objective->getAttribute('deleted_at') === null,
+                '',
+                $objective->getAttribute('deleted_at')->format('Y-m-d H:i:s')
+            ),
+
             'user' => $this->whenLoaded('user')
         ];
     }

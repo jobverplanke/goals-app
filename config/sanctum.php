@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -40,8 +42,8 @@ return [
     */
 
     'middleware' => [
-        'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
-        'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
+        'verify_csrf_token' => Domain\App\Http\Middleware\VerifyCsrfToken::class,
+        'encrypt_cookies' => Domain\App\Http\Middleware\EncryptCookies::class,
     ],
 
 ];

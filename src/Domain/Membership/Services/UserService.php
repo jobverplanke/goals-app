@@ -72,12 +72,6 @@ class UserService
         return $this->builder->getPaginated($data);
     }
 
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Domain\Membership\Models\User
-     * @throws \Throwable
-     */
     public function createFromRequest(Request $request): User
     {
         // call \App\Actions\Fortify\CreateNewUser

@@ -12,7 +12,7 @@ services:
     volumes:
       - ./:/var/www/html:cached
     networks:
-      proxy:
+      - proxy
 
   php:
     image: ghcr.io/jobverplanke/php:7.4-fpm-dev
@@ -22,7 +22,7 @@ services:
     volumes:
       - ./:/var/www/html:cached
     networks:
-      proxy:
+      - proxy
 
   mysql:
     image: library/mysql:8.0
@@ -37,7 +37,7 @@ services:
     volumes:
       - ./.docker/mysql/data:/var/lib/mysql
     networks:
-      proxy:
+      - proxy
 
   redis:
     image: library/redis:6.0-alpine
@@ -48,19 +48,28 @@ services:
     volumes:
       - ./.docker/redis/data:/data
     networks:
-      proxy:
+      - proxy
 
   mail:
-    image: mailhog/mailhog
+    image: mailhog/mailhog:v1.0.1
     container_name: mail
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /var/log/fakesmtp
+#    ports:
+#      - 1025:1025
+#      - 8025:8025
+    volumes:
+      - ./.docker/mail/data:/maildir
+      - ./.docker/mail/logs:/var/log/fakesmtp
     networks:
-      proxy:
+      - proxy
 
   whoami:
     image: traefik/whoami
     container_name: whoami
     networks:
-      proxy:
+      - proxy
 
 networks:
   proxy:

@@ -14,3 +14,4 @@ yarn-error.log
 _ide_helper*
 .idea
 .php_cs.cache
+.docker/*

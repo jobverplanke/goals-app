@@ -9,18 +9,16 @@ use Illuminate\Support\Str;
 
 /**
  * Class StoreObjectiveRequest
- *
  * @author Job Verplanke <job.verplanke@gmail.com>
  */
 class StoreObjectiveRequest extends FormRequest
 {
     public function authorize()
     {
-        return true;
-        // return $this->user()->can('store');
+        return $this->user()->can('objective:create');
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required'],
@@ -31,22 +29,22 @@ class StoreObjectiveRequest extends FormRequest
         ];
     }
 
-    public function validated()
+    public function validated(): array
     {
         return array_merge([
             'uuid' => Str::uuid(),
-            'user_id' => 1, // (int) $this->user()->getAuthIdentifier()
+            'user_id' => (int) $this->user()->getAuthIdentifier()
         ], parent::validated());
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required' => ':attribute is required.'
         ];
     }
 
-    public function attributes()
+    public function attributes(): array
     {
         return [
             'name' => 'Objective'

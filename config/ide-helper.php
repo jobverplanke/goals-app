@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -116,6 +118,8 @@ return [
     */
 
     'model_locations' => [
+        'src/Domain/App/Models',
+        'src/Domain/Auth/Models',
         'src/Domain/Membership/Models',
         'src/Domain/Objective/Models',
     ],

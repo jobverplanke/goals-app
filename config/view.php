@@ -17,7 +17,10 @@ return [
 
     'paths' => [
         resource_path('views'),
-        base_path('src/Domain/Objective/resources/views')
+        base_path('src/Domain/App/resources/views'),
+        base_path('src/Domain/Auth/resources/views'),
+        base_path('src/Domain/Membership/resources/views'),
+        base_path('src/Domain/Objective/resources/views'),
     ],
 
     /*

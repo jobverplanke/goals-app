@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 $finder = Symfony\Component\Finder\Finder::create()
     ->in([
-        __DIR__.'/app',
         __DIR__.'/src',
     ])
     ->name('*.php')

@@ -8,36 +8,37 @@ use Domain\Objective\Builders\ObjectiveBuilder;
 use Domain\Objective\DataTransferObjects\Objective\StoreObjectiveDTO;
 use Domain\Objective\Models\Objective;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ObjectiveRepository
- *
  * @author Job Verplanke <job.verplanke@gmail.com>
  */
-class ObjectiveRepository
+class ObjectiveRepository extends AbstractRepository
 {
-    private Model $model;
-
     private ObjectiveBuilder $objectiveBuilder;
 
     public function __construct(Objective $objective)
     {
         $this->model = $objective;
-        $this->objectiveBuilder = new ObjectiveBuilder(Objective::query(), null);
+        $this->objectiveBuilder = new ObjectiveBuilder($objective::query(), null);
+        $this->objectiveBuilder->setModel($objective);
     }
 
-    public function store(StoreObjectiveDTO $objective)
+    public function store(StoreObjectiveDTO $dto)
     {
-        return $this->objectiveBuilder->create([
-            'user_id' => $objective->getUserId(),
-            'uuid' => $objective->getUuid()->toString(),
-            'name' => $objective->getName(),
-            'description' => $objective->getDescription(),
-            'vision' => $objective->getVision(),
-            'ambition' => $objective->getAmbition(),
-            'term' => $objective->getTerm()
+        $objective = $this->objectiveBuilder->create([
+            'user_id' => $dto->getUserId(),
+            'uuid' => $dto->getUuid()->toString(),
+            'name' => $dto->getName(),
+            'description' => $dto->getDescription(),
+            'vision' => $dto->getVision(),
+            'ambition' => $dto->getAmbition(),
+            'term' => $dto->getTerm()
         ]);
+
+        $this->validateModelCreation($objective);
+
+        return $objective;
     }
 
     public function findOrFail(int $id)
@@ -45,9 +46,9 @@ class ObjectiveRepository
         return $this->objectiveBuilder->findOrFail($id);
     }
 
-    public function paginate(int $perPage): LengthAwarePaginator
+    public function paginate(?int $perPage, $query): LengthAwarePaginator
     {
-        return $this->objectiveBuilder->paginate($perPage);
+        return $this->objectiveBuilder->getPaginated($perPage, $query);
     }
 
     public function update(int $id)

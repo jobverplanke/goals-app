@@ -38,21 +38,11 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
                 Permission::create([
-                    'name' => 'users:view-any'
-                ]);
-
-                Permission::create([
-                    'name' => 'users:view'
-                ]);
-
-                Permission::create([
-                    'name' => 'users:create'
+                    'name' => 'objective:create'
                 ]);
 
                 $user->givePermissionTo([
-                    'users:view-any',
-                    'users:view',
-                    'users:create',
+                    'objective:create'
                 ]);
 
                 $this->createTeam($user);

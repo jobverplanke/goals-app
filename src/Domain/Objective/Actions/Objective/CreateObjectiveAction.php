@@ -10,7 +10,6 @@ use Domain\Objective\Repositories\ObjectiveRepository;
 
 /**
  * Class CreateObjectiveAction
- *
  * @author Job Verplanke <job.verplanke@gmail.com>
  */
 class CreateObjectiveAction
@@ -29,7 +28,7 @@ class CreateObjectiveAction
     {
         /** @var \Domain\Objective\Models\Objective $objective */
         $objective = $this->objectiveRepository->store(
-            self::createObjectiveFrom($data)
+            $this->createObjectiveFrom($data)
         );
 
         if ($notify) {
@@ -39,7 +38,7 @@ class CreateObjectiveAction
         return $objective;
     }
 
-    private static function createObjectiveFrom(array $data): StoreObjectiveDTO
+    private function createObjectiveFrom(array $data): StoreObjectiveDTO
     {
         return StoreObjectiveDTO::make(
             $data['user_id'],

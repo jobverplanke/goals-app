@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Laravel\Jetstream\Features;
 
 return [
@@ -30,7 +32,7 @@ return [
 
     'features' => [
         // Features::profilePhotos(),
-         Features::api(),
+        Features::api(),
         Features::teams(),
     ],
 

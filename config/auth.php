@@ -1,5 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
+use Domain\Membership\Models\User;
+
 return [
 
     /*
@@ -68,7 +72,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Domain\Membership\Models\User::class
+            'model' => User::class
         ],
 
         // 'users' => [

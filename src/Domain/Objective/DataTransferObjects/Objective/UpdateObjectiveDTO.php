@@ -59,8 +59,8 @@ class UpdateObjectiveDTO
         ?string $vision = null,
         ?string $ambition = null,
         ?string $term = null
-    ) {
-        return new self($userId, $uuid, $name, $description, $vision, $ambition, $term);
+    ): self {
+        return new static($userId, $uuid, $name, $description, $vision, $ambition, $term);
     }
 
     /**
