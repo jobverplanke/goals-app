@@ -11,7 +11,6 @@ use Inertia\Response;
 
 class AuthRoutes implements Router
 {
-
     public static function api(): void
     {
         // TODO: Implement api() method.
@@ -19,10 +18,10 @@ class AuthRoutes implements Router
 
     public static function web(): void
     {
-        Route::get('/', fn() => view('welcome'));
+        Route::get('/', fn () => view('welcome'));
         Route::middleware(['auth:sanctum', 'verified'])->get(
             '/dashboard',
-            fn(): Response => Inertia::render('Dashboard')
+            fn (): Response => Inertia::render('Dashboard')
         )->name('dashboard');
     }
 }
