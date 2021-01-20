@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Domain\App\Providers;
 
 use Domain\App\Actions\Fortify\ResetUserPassword;
-use Domain\App\Actions\Fortify\UpdateUserPassword;
+use Domain\Membership\Actions\Fortify\UpdateUserPassword;
 use Domain\App\Actions\Fortify\UpdateUserProfileInformation;
 use Domain\Membership\Actions\CreateNewUser;
 use Illuminate\Support\ServiceProvider;

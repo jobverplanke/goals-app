@@ -6,6 +6,6 @@ use Domain\Auth\Routes\AuthRoutes;
 use Domain\Membership\Routes\MembershipRoutes;
 use Domain\Objective\Routes\ObjectiveRoutes;
 
-AuthRoutes::api();
-MembershipRoutes::api();
-ObjectiveRoutes::api();
+AuthRoutes::web();
+MembershipRoutes::web();
+ObjectiveRoutes::web();

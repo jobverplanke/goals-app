@@ -53,7 +53,6 @@ class LoginResource extends JsonResource
             ),
 
             'permissions' => $user->getAllPermissions()->pluck('name'),
-            'team' => $user->allTeams()->pluck('name'),
         ];
     }
 }

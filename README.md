@@ -1,7 +1,6 @@
 # TODO
 
-- PHP CLI container met supervisor voor queue workers.
-- App/Actions/Fortify & App/Actions/Jetstream verplaatsen naar juiste domain. 
+See [Todo list](TODO.md)
 
 
 #App

@@ -2,27 +2,26 @@ version: '3.7'
 
 services:
   nginx:
-    image: jobverplanke/nginx:1.18-alpine
+    image: jobverplanke/nginx:1.19-alpine
     container_name: nginx
     environment:
       APP_DOMAIN: goals.test
-      MAIL_DOMAIN: mail.goals.test
     ports:
       - 80:80
     volumes:
       - ./:/var/www/html:cached
     networks:
-      - proxy
+      - goals
 
   php:
-    image: ghcr.io/jobverplanke/php:7.4-fpm-dev
+    image: jobverplanke/php:7.4-fpm
     container_name: php
     environment:
-      PHP_IDE_CONFIG: 'serverName=Docker'
+      PHP_IDE_CONFIG: 'serverName=Docker' # Auto accept connections of IDE
     volumes:
       - ./:/var/www/html:cached
     networks:
-      - proxy
+      - goals
 
   mysql:
     image: library/mysql:8.0
@@ -37,7 +36,7 @@ services:
     volumes:
       - ./.docker/mysql/data:/var/lib/mysql
     networks:
-      - proxy
+      - goals
 
   redis:
     image: library/redis:6.0-alpine
@@ -48,7 +47,7 @@ services:
     volumes:
       - ./.docker/redis/data:/data
     networks:
-      - proxy
+      - goals
 
   mail:
     image: mailhog/mailhog:v1.0.1
@@ -56,21 +55,18 @@ services:
     environment:
       MH_STORAGE: maildir
       MH_MAILDIR_PATH: /var/log/fakesmtp
-#    ports:
-#      - 1025:1025
-#      - 8025:8025
     volumes:
       - ./.docker/mail/data:/maildir
       - ./.docker/mail/logs:/var/log/fakesmtp
     networks:
-      - proxy
+      - goals
 
   whoami:
     image: traefik/whoami
     container_name: whoami
     networks:
-      - proxy
+      - goals
 
 networks:
-  proxy:
+  goals:
     driver: bridge

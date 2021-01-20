@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Domain\App\Actions\Fortify;
+namespace Domain\Membership\Actions\Fortify;
 
 use Domain\Membership\Actions\PasswordValidationRules;
 use Illuminate\Support\Facades\Hash;

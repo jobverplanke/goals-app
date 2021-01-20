@@ -92,6 +92,16 @@
                                         <div class="border-t border-gray-100"></div>
                                     </template>
 
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                      Developer Tools
+                                    </div>
+
+                                    <jet-dropdown-link :href="'http://horizon.goals.test/'">
+                                      Horizon
+                                    </jet-dropdown-link>
+
+                                    <div class="border-t border-gray-100"></div>
+
                                     <!-- Authentication -->
                                     <form @submit.prevent="logout">
                                         <jet-dropdown-link as="button">
