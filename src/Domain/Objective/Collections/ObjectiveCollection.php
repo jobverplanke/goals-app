@@ -8,5 +8,4 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ObjectiveCollection extends Collection
 {
-
 }
