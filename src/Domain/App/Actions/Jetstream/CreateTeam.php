@@ -17,8 +17,8 @@ class CreateTeam implements CreatesTeams
      * @param mixed $user
      * @param array $input
      *
-     * @return mixed
      * @throws \Illuminate\Auth\Access\AuthorizationException|\Illuminate\Validation\ValidationException
+     * @return mixed
      */
     public function create($user, array $input)
     {

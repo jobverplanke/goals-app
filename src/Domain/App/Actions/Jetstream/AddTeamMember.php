@@ -22,8 +22,8 @@ class AddTeamMember implements AddsTeamMembers
      * @param string $email
      * @param string|null $role
      *
-     * @return void
      * @throws \Illuminate\Auth\Access\AuthorizationException|\Illuminate\Validation\ValidationException
+     * @return void
      */
     public function add($user, $team, string $email, string $role = null)
     {
@@ -46,8 +46,8 @@ class AddTeamMember implements AddsTeamMembers
      * @param string $email
      * @param string|null $role
      *
-     * @return void
      * @throws \Illuminate\Validation\ValidationException
+     * @return void
      */
     protected function validate($team, string $email, ?string $role)
     {

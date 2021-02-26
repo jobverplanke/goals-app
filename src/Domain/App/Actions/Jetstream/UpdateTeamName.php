@@ -17,8 +17,8 @@ class UpdateTeamName implements UpdatesTeamNames
      * @param mixed $team
      * @param array $input
      *
-     * @return void
      * @throws \Illuminate\Validation\ValidationException|\Illuminate\Auth\Access\AuthorizationException
+     * @return void
      */
     public function update($user, $team, array $input)
     {
