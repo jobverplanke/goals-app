@@ -23,7 +23,7 @@ class CreateObjectivesTable extends Migration
             $table->string('description', 255)->nullable();
             $table->mediumText('vision')->nullable();
             $table->mediumText('ambition')->nullable();
-            $table->string('term',10)->nullable()->comment('Options: short or long. Goal terms are subjective so can be null');
+            $table->string('term', 10)->nullable()->comment('Options: short or long. Goal terms are subjective so can be null');
             $table->timestamps();
             $table->softDeletes();
         });

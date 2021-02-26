@@ -26,8 +26,8 @@ class CreateNewUser implements CreatesNewUsers
      *
      * @param array $input
      *
-     * @return \Domain\Membership\Models\User
      * @throws \Throwable
+     * @return \Domain\Membership\Models\User
      */
     public function create(array $input): User
     {
@@ -61,7 +61,7 @@ class CreateNewUser implements CreatesNewUsers
     {
         $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0]."'s Team",
+            'name' => explode(' ', $user->name, 2)[0] . "'s Team",
             'personal_team' => true,
         ]));
     }

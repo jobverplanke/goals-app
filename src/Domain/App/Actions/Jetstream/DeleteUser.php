@@ -33,8 +33,8 @@ class DeleteUser implements DeletesUsers
      *
      * @param mixed $user
      *
-     * @return void
      * @throws \Throwable
+     * @return void
      */
     public function delete($user)
     {

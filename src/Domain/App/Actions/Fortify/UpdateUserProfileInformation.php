@@ -17,8 +17,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      * @param mixed $user
      * @param array $input
      *
-     * @return void
      * @throws \Illuminate\Validation\ValidationException
+     * @return void
      */
     public function update($user, array $input)
     {
